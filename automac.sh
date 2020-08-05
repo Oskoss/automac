@@ -1,5 +1,6 @@
 #!/bin/bash
 
+set -x
 # Ask for the administrator password upfront
 sudo -v
 
@@ -7,7 +8,9 @@ sudo -v
 while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 
 ## brew
-$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)
+echo "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)" > tmp-brew.sh
+chmod +x tmp-brew.sh
+./tmp-brew.sh
 
 ## zsh related tools
 brew install zsh
@@ -34,12 +37,13 @@ brew cask install microsoft-teams
 brew cask install flycut
 brew cask install docker
 brew cask install istat-menus
+brew cask install spotify
 
 ## Install oh-my-zsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 
 # Add Visual Studio Code command line
-echo 'export PATH="\$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"' >> ~/.zshrc
+echo 'export PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"' >> ~/.zshrc
 
 ## Install Golang
 curl -L https://git.io/vQhTU | bash
@@ -104,3 +108,13 @@ defaults write com.apple.dock persistent-apps -array-add "<dict><key>tile-data</
 defaults write com.apple.dock persistent-others -array-add "<dict><key>tile-data</key><dict><key>label</key><string>Calendar</string><key>url</key><dict><key>_CFURLString</key><string>https://outlook.office365.com/calendar/view</string><key>_CFURLStringType</key><integer>15</integer></dict></dict><key>tile-type</key><string>url-tile</string></dict>"; killall Dock
 defaults write com.apple.dock persistent-others -array-add "<dict><key>tile-data</key><dict><key>label</key><string>Mail</string><key>url</key><dict><key>_CFURLString</key><string>https://outlook.office365.com/mail/inbox</string><key>_CFURLStringType</key><integer>15</integer></dict></dict><key>tile-type</key><string>url-tile</string></dict>"; killall Dock
 defaults write com.apple.systemuiserver menuExtras -array "/System/Library/CoreServices/Menu Extras/Battery.menu" "/System/Library/CoreServices/Menu Extras/AirPort.menu" "/System/Library/CoreServices/Menu Extras/Volume.menu" "/System/Library/CoreServices/Menu Extras/Bluetooth.menu"; killall SystemUIServer
+defaults write com.generalarcade.flycut bezelAlpha "<real>0.10000000000000001</real>"
+defaults write com.generalarcade.flycut bezelHeight "<real>200</real>"
+defaults write com.generalarcade.flycut bezelWidth "<real>200</real>"
+defaults write com.generalarcade.flycut loadOnStartup "<true/>"
+defaults write com.generalarcade.flycut menuIcon "<integer>3</integer>"
+defaults write com.generalarcade.flycut rememberNum "<real>99</real>"
+defaults write com.generalarcade.flycut removeDuplicates "<true/>"
+defaults write com.generalarcade.flycut skipPasswordFields "<false/>"
+defaults write com.generalarcade.flycut wraparoundBezel "<true/>"
+defaults write com.generalarcade.flycut stickyBezel "<false/>"
