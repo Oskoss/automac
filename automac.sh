@@ -28,16 +28,16 @@ echo 'PS1="$(kube_ps1)"$PS1' >> ~/.zshrc
 
 
 ## basic macos apps
-brew cask install iterm2
-brew cask install slack
-brew cask install visual-studio-code
-brew cask install google-chrome
-brew cask install zoomus
-brew cask install microsoft-teams
-brew cask install flycut
-brew cask install docker
-brew cask install istat-menus
-brew cask install spotify
+brew install --cask iterm2
+brew install --cask visual-studio-code
+brew install --cask flycut
+brew install --cask docker
+brew install --cask istat-menus
+brew install --cask spotify
+brew install --cask google-chrome
+brew install --cask zoomus
+brew install --cask microsoft-teams
+brew install --cask slack
 
 ## Install oh-my-zsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
